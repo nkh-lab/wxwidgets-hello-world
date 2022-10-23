@@ -1,9 +1,10 @@
+## Intro
 wxWidgets "Hello World" example.
 
 ![MainWindow](doc/screenshots/MainWindow.png)
 
 ## How to build
-### Ubuntu
+### Linux (Ubuntu)
 
 1. Install dependencies
 ```
@@ -14,6 +15,10 @@ $ sudo apt-get install libwxgtk3.0-gtk3-dev
 mkdir build && cd build
 cmake ..
 make
+```
+Or via script for creating portable package:
+```
+.\tools\build-portable-linux.sh
 ```
 
 ### Windows

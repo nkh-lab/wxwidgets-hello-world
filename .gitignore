@@ -1,3 +1,5 @@
+# QtCreator #
+
 # Files
 *.autosave
 *.cflags
@@ -13,4 +15,32 @@
 # Folders
 build/
 temp/
+
+# AndroidStudio #
+
+# Files
+*.iml
+local.properties
+
+# Folders
+.cxx/
+.DS_Store/
+.externalNativeBuild/
+.gradle/
+.idea/
+build/
+captures/
+
+# VisualStudioCode #
+
+# Files
+.project
+
+# Folders
+.settings/
+.vscode/
+
+# General #
+
+# Folders
 prebuilt/
