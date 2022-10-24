@@ -31,6 +31,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL Linux)
     add_definitions(-D__WXGTK__)
     # Suppress warnings 
     add_compile_options(-Wno-deprecated-copy)
+    add_compile_options(-Wno-ignored-qualifiers)
     #################
 
 elseif(CMAKE_SYSTEM_NAME STREQUAL Windows)

@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [ '**' ]
+
+jobs:
+  Build-on-Ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: |
+          sudo apt-get install libwxgtk3.0-gtk3-dev
+      - name: Build
+        run: |
+          mkdir build && cd build
+          cmake ..
+          make
+
+  Build-on-Windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: microsoft/setup-msbuild@v1.1
+      - name: Download tools
+        run: |
+          curl -L https://www.7-zip.org/a/7z2201-x64.exe -o 7z.exe
+      - name: Download and prepare prebuilts
+        run: |
+          curl -LO https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxMSW-3.2.1_vc14x_x64_Dev.7z
+          curl -LO https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxMSW-3.2.1_vc14x_x64_ReleaseDLL.7z
+          curl -LO https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.1/wxWidgets-3.2.1-headers.7z
+          7z x *.7z -o*
+          mkdir prebuilt/wxwidgets/lib
+          cmd /C mklink /D prebuilt\wxwidgets\lib\Debug %CD%\wxMSW-3.2.1_vc14x_x64_Dev\lib\vc14x_x64_dll
+          cmd /C mklink /D prebuilt\wxwidgets\lib\Release %CD%\wxMSW-3.2.1_vc14x_x64_ReleaseDLL\lib\vc14x_x64_dll
+          cmd /C mklink /D prebuilt\wxwidgets\include %CD%\wxWidgets-3.2.1-headers\include
+      - name: Build
+        run: |
+          mkdir build && cd build
+          cmake -G "Visual Studio 17 2022" .. 
+          cmake --build . --config Release

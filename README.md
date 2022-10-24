@@ -1,7 +1,16 @@
 ## Intro
-wxWidgets "Hello World" example.
+[wxWidgets](https://github.com/wxWidgets/wxWidgets) "Hello World" CMake cross-platform example project.
 
 ![MainWindow](doc/screenshots/MainWindow.png)
+
+Tested on:
+ - Linux (Ubuntu)
+ - Windows 
+
+## CI Status
+[![CI](https://github.com/nkh-lab/wxwidgets-hello-world/actions/workflows/ci.yml/badge.svg)](https://github.com/nkh-lab/wxwidgets-hello-world/actions/workflows/ci.yml) 
+
+Ubuntu | Windows 
 
 ## How to build
 ### Linux (Ubuntu)

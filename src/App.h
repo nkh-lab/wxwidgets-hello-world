@@ -11,14 +11,25 @@
 
 #pragma once
 
+#include <memory>
+
 #include <wx/app.h>
+#include <wx/timer.h>
 
 class App : public wxApp
 {
 public:
-    App() = default;
+    App();
     ~App();
 
     bool OnInit() override;
     int OnExit() override;
+    void OnInitCmdLine(wxCmdLineParser& parser) override;
+    bool OnCmdLineParsed(wxCmdLineParser& parser) override;
+
+    void OnTestModeTimer(wxTimerEvent& event);
+
+private:
+    bool test_mode_;
+    std::unique_ptr<wxTimer> test_mode_timer_;
 };
